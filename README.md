@@ -140,3 +140,7 @@ This package is the first release candidate. Source, data, binary layout and inc
 ## External boundary
 
 ACME, VICE and physical C64/SID capture were not available in the audit environment. The deterministic assembler, source/branch/overlap guards and executable NMOS-6502 model passed. Real-hardware smoke testing remains the strongest external proof for analog SID output and exact VIC-II silicon behavior.
+
+## Runtime preview
+
+![ARPSID V965 C64 teaser runtime preview](ARPSID_TEASER_PREVIEW.png)
