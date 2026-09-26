@@ -1,4 +1,6 @@
 ; =============================================================================
+; Copyright (C) 2026 Ulf Bertilsson
+; SPDX-License-Identifier: GPL-3.0-or-later
 ; ARPSID V965 — canonical render pipeline teaser for C64
 ; ARPSID_V965_TEASER_RELEASE_ACTIVE
 ; VBLANK_SYNCED_SMOOTH_SCROLLER_ACTIVE

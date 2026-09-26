@@ -1,5 +1,8 @@
 # ArpSID v965 C64 Teaser — Release Candidate 1
 
+Copyright © 2026 Ulf Bertilsson. Licensed under the
+[GNU General Public License v3.0 or later](LICENSE).
+
 C64 teaser using the original **UBER SOUND SOLUTION** multicolor bitmap, the audited three-voice Megablast music engine, and four independent ArpSID feature scrollers derived from `docs/AI2AI_ARPSID_V965_LOWLEVEL_HANDOFF.md`.
 
 RC1 freezes the fully audited implementation for emulator and real-hardware acceptance testing. All live VIC-II objects share ROM-free bank 1, sprite state is completed before the first sprite DMA line, all same-frame visual consumers observe one immutable beat-envelope value, the VSync scroller runs at raster 0, and the frame-tail IRQ remains lightweight.

@@ -4,6 +4,13 @@ from pathlib import Path
 import hashlib, sys
 ROOT=Path(__file__).resolve().parents[1]
 manifest=ROOT/'SHA256SUMS.txt'; errors=[]; count=0; listed={}
+EXCLUDED_PARTS={'.git', '__pycache__'}
+
+
+def packaged_file(path: Path) -> bool:
+    relative=path.relative_to(ROOT)
+    return path.is_file() and path.name!='SHA256SUMS.txt' and not any(part in EXCLUDED_PARTS for part in relative.parts) and path.suffix!='.pyc'
+
 if not manifest.exists():
     print('FAIL: SHA256 manifest missing'); sys.exit(1)
 for n,line in enumerate(manifest.read_text().splitlines(),1):
@@ -18,7 +25,7 @@ for n,line in enumerate(manifest.read_text().splitlines(),1):
     if not p.is_file(): errors.append(f'line {n}: missing {rel}'); continue
     got=hashlib.sha256(p.read_bytes()).hexdigest(); count+=1
     if got!=expected: errors.append(f'{rel}: {got} != {expected}')
-actual={p.relative_to(ROOT).as_posix() for p in ROOT.rglob('*') if p.is_file() and p.name!='SHA256SUMS.txt'}
+actual={p.relative_to(ROOT).as_posix() for p in ROOT.rglob('*') if packaged_file(p)}
 missing=sorted(actual-set(listed))
 extra=sorted(set(listed)-actual)
 for rel in missing: errors.append(f'unmanifested packaged file: {rel}')
